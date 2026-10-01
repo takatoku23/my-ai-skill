@@ -27,7 +27,7 @@ docs/
 
 | Namespace | Skill | Purpose |
 | --- | --- | --- |
-| `dev` | `reviewable-commits` | 変更を目的と影響が追える小さなコミットへ分ける |
+| `dev` | `reviewable-commits` | 変更を目的と影響が追える小さなコミットへ分け、レビュー指摘は元のコミットへ fixup して畳む |
 | `dev` | `register-skill` | どの作業ディレクトリからでも skill をこの repository に登録し、publish してこの PC へ入れ直す |
 | `research` | `digest` | フロントエンド、エンジニアトレンド、AI、投資の最新情報をダイジェストにする |
 | `writing` | `japanese-tech-writing` | 日本語の技術文章を規範に沿って書く・推敲する |
