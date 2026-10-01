@@ -1,0 +1,11 @@
+# user scope へ Codex / Claude Code の両方に入れる skill。
+# 書式: <OWNER/REPO> <skill path or name> [pin]
+# 自作 skill は path、外部 skill は upstream から直接入れて gh skill update で追従する。
+
+# 自作
+takatoku23/my-ai-skill skills/dev/reviewable-commits
+takatoku23/my-ai-skill skills/dev/register-skill
+takatoku23/my-ai-skill skills/writing/japanese-tech-writing
+
+# 外部
+mizchi/explainer explainer

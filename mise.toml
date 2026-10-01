@@ -1,0 +1,46 @@
+min_version = "2026.9.14"
+
+[tasks.check]
+description = "Agent Skills の publish validation、マニフェスト、同梱 JavaScript、diff の空白を検査"
+run = [
+  "gh skill publish --dry-run",
+  "scripts/check-manifests.sh",
+  "find skills -type f \\( -name '*.js' -o -name '*.mjs' -o -name '*.cjs' \\) -exec node --check {} \\;",
+  "bash -n scripts/*.sh",
+  "git diff --check && git diff --cached --check",
+]
+
+[tasks.inventory]
+description = "この PC の Codex / Claude Code に入っている skill・plugin とマニフェストのずれを表示"
+run = "scripts/inventory.sh"
+
+[tasks."install:user"]
+description = "manifests/user.txt の skill を Codex と Claude Code の user scope へ remote install"
+run = "scripts/install.sh manifests/user.txt user"
+
+[tasks."install:local"]
+description = "自作 skill を作業ツリーから user scope へ入れる（publish 前の smoke test）"
+run = "scripts/install.sh manifests/user.txt user --local"
+
+[tasks."install:project"]
+description = "manifests/projects/<name>.txt の skill を、カレントの repository へ project scope で入れる"
+dir = "{{cwd}}"
+usage = 'arg "<name>" help="manifests/projects/ 配下のファイル名（拡張子なし）"'
+run = '{{config_root}}/scripts/install.sh {{config_root}}/manifests/projects/${usage_name}.txt project'
+
+[tasks."install:plugins"]
+description = "manifests/claude-plugins.txt の marketplace と plugin を Claude Code へ入れる"
+run = "scripts/apply-claude-plugins.sh"
+
+[tasks.update]
+description = "gh skill で入れた skill を更新（--dry-run を付けると確認だけ）"
+run = "gh skill update --all"
+
+[tasks.sync]
+description = "gist など gh skill で入れられない取得元から references を取り込み直す"
+run = "scripts/sync-vendored.sh"
+
+[tasks.publish]
+description = "main の CI 通過後に tag を付けて GitHub release として publish"
+usage = 'arg "<tag>" help="semver の tag（例: v0.1.0）"'
+run = "gh skill publish --tag ${usage_tag}"
