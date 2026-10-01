@@ -6,6 +6,7 @@
 takatoku23/my-ai-skill skills/dev/reviewable-commits
 takatoku23/my-ai-skill skills/dev/register-skill
 takatoku23/my-ai-skill skills/writing/japanese-tech-writing
+takatoku23/my-ai-skill skills/research/digest
 
 # 外部
 mizchi/explainer explainer

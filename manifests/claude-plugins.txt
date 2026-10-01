@@ -5,7 +5,6 @@
 # plugin <plugin@marketplace>
 
 marketplace claude-plugins-official anthropics/claude-plugins-official
-marketplace takuto-claude-plugin https://github.com/takatoku23/takuto-claude-plugin.git
 
 plugin code-review@claude-plugins-official
 plugin code-simplifier@claude-plugins-official
@@ -13,4 +12,3 @@ plugin frontend-design@claude-plugins-official
 plugin playwright@claude-plugins-official
 plugin skill-creator@claude-plugins-official
 plugin vercel@claude-plugins-official
-plugin digest@takuto-claude-plugin

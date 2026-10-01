@@ -23,6 +23,7 @@ repository に依存しない手順と、作業ディレクトリに関係なく
 | --- | --- |
 | `reviewable-commits` | repository 固有の規約は実行時に読み、分け方の方針だけを持つ |
 | `register-skill` | 対象はこの repository に固定されている |
+| `digest` | 読者情報を PC 上の `~/.digest/profile.md` から読む |
 | `japanese-tech-writing` | 日本語で書く文章すべてに適用する |
 | `explainer`（外部） | 説明対象を依頼ごとに受け取る |
 
