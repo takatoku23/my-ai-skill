@@ -9,6 +9,7 @@ Codex と Claude Code で使う Agent Skills を、`gh skill` で配布・更新
 ```text
 skills/
   dev/          # Git / GitHub の作業手順、skill 管理
+  research/     # 情報収集
   writing/      # 日本語の文章規範
 
 manifests/
@@ -27,7 +28,8 @@ docs/
 | Namespace | Skill | Purpose |
 | --- | --- | --- |
 | `dev` | `reviewable-commits` | 変更を目的と影響が追える小さなコミットへ分ける |
-| `dev` | `register-skill` | 明示された skill をこの repository に登録する |
+| `dev` | `register-skill` | どの作業ディレクトリからでも skill をこの repository に登録し、publish してこの PC へ入れ直す |
+| `research` | `digest` | フロントエンド、エンジニアトレンド、AI、投資の最新情報をダイジェストにする |
 | `writing` | `japanese-tech-writing` | 日本語の技術文章を規範に沿って書く・推敲する |
 
 マニフェストで入れる外部 skill:
@@ -60,15 +62,28 @@ mise run sync           # gist から取り込んだ references を更新
 
 `mise run check` が通らない変更は merge しない。
 
-## Publish
+## Release
 
-`main` に merge し、CI が通った後に tag を付けて publish する。
+skill の追加や変更は、どの作業ディレクトリのセッションからでも「この skill を my-ai-skill に入れて」と頼めば register-skill が反映する。初めて使う PC では、clone の場所を記録しておく。
 
 ```bash
-mise run publish -- v0.1.0
+mise run setup  # git config --global my-ai-skill.path に clone の場所を記録
 ```
 
-publish 後は `mise run install:user` で remote から入れ直し、`mise run inventory` で `managed` になっていることを確認する。
+手で反映するときは、main に commit してから `release` を実行する。push、次の patch version での publish、user scope への install、棚卸しまでを行う。
+
+```bash
+mise run release            # v0.1.0 -> v0.1.1
+mise run release -- minor   # skill の削除や改名を含むとき
+```
+
+## 個人の情報を使う skill
+
+この repository は public である。個人の情報を読む skill は、値を PC 上のファイルに置き、repository には架空の値で書いた見本だけを置く。
+
+| Skill | PC 上のファイル | 見本 |
+| --- | --- | --- |
+| `digest` | `~/.digest/profile.md`（アーカイブは `~/.digest/archives/`） | `skills/research/digest/references/profile.example.md` |
 
 ## Scope
 
@@ -83,6 +98,6 @@ publish 後は `mise run install:user` で remote から入れ直し、`mise run
 - token、secret、credential
 - 外部 repository で公開されている skill のコピー
 - 特定 repository の中で完結する skill（その repository の `.claude/skills/` で管理する）
-- Claude Code plugin 固有の commands、agents、hooks（`takatoku23/takuto-claude-plugin` 側で管理する）
+- Claude Code plugin 固有の commands、agents、hooks
 
 詳しくは [docs/privacy.md](docs/privacy.md) を参照。

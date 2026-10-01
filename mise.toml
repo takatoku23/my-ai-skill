@@ -40,7 +40,11 @@ run = "gh skill update --all"
 description = "gist など gh skill で入れられない取得元から references を取り込み直す"
 run = "scripts/sync-vendored.sh"
 
-[tasks.publish]
-description = "main の CI 通過後に tag を付けて GitHub release として publish"
-usage = 'arg "<tag>" help="semver の tag（例: v0.1.0）"'
-run = "gh skill publish --tag ${usage_tag}"
+[tasks.release]
+description = "commit 済みの main を push し、次の version で publish して、この PC の user scope へ入れ直す"
+usage = 'arg "[bump]" default="patch" help="patch / minor / major、または vX.Y.Z"'
+run = "scripts/release.sh ${usage_bump}"
+
+[tasks.setup]
+description = "この clone の場所を git config に記録する（register-skill がどのディレクトリからでも見つけられるように）"
+run = 'git config --global my-ai-skill.path "{{config_root}}" && echo "my-ai-skill.path={{config_root}}"'
