@@ -10,3 +10,4 @@ takatoku23/my-ai-skill skills/research/digest
 
 # 外部
 mizchi/explainer explainer
+mizchi/explainer explainer-book

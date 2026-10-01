@@ -26,6 +26,9 @@ repository に依存しない手順と、作業ディレクトリに関係なく
 | `digest` | 読者情報を PC 上の `~/.digest/profile.md` から読む |
 | `japanese-tech-writing` | 日本語で書く文章すべてに適用する |
 | `explainer`（外部） | 説明対象を依頼ごとに受け取る |
+| `explainer-book`（外部） | `explainer` の章立て版。`explainer` と同じ場所に入れる必要がある |
+
+`explainer` と `explainer-book` は Node 24 以上を前提とし、依存パッケージは資料を置く repository に入れる。
 
 ### Project scope
 

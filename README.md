@@ -37,6 +37,7 @@ docs/
 | Repository | Skill | Purpose |
 | --- | --- | --- |
 | `mizchi/explainer` | `explainer` | 読み手に合わせた速習資料を作り、図と主張を検証する |
+| `mizchi/explainer` | `explainer-book` | 速習資料に収まらない内容を、章立てと演習つきの学習資料にする |
 
 ## Usage
 
